@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Project;
+use App\Models\Type;
 use Illuminate\Http\Request;
 
 class ProjectController extends Controller
@@ -17,14 +18,6 @@ class ProjectController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
      * Display the specified resource.
      */
     public function show(string $id)
@@ -36,19 +29,12 @@ class ProjectController extends Controller
         return response()->json($project);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function getProjectsByType(string $id)
     {
-        //
-    }
+        $type = Type::find($id);
+        $projects = $type->projects;
+        $total = count($projects);
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        return response()->json(compact('type', 'projects', 'total'));
     }
 }

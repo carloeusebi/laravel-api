@@ -16,3 +16,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::apiResource('/projects', ProjectController::class);
+
+Route::get('/types/{type}/projects', [ProjectController::class, 'getProjectsByType']);
