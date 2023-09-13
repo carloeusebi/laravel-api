@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MailController;
 use App\Http\Controllers\ProjectController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -18,3 +19,5 @@ use Illuminate\Support\Facades\Route;
 Route::apiResource('/projects', ProjectController::class);
 
 Route::get('/types/{type}/projects', [ProjectController::class, 'getProjectsByType']);
+
+Route::post('/contact-form', [MailController::class, 'contactForm']);
