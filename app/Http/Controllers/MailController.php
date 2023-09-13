@@ -21,7 +21,7 @@ class MailController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return response()->json($validator->errors(), 400);
+            return response()->json(['errors' => $validator->errors()], 400);
         }
 
         Mail::to(env('MAIL_TO_ADDRESS'))->send(new ContactMail($data));
